@@ -1,16 +1,17 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-##  makeCacheMatix
+##  makeCacheMatrix
 #
 #   Creates an object for a (square!) matrix to prepare for caching its inverse
-#   containing a setter and getter for the matrix and its inverse
+#   containing a getter and setter (returning the value set) 
+#   for the matrix and its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
     i <- matrix()
     set <- function(y) {
-        x <<- y
         i <<- matrix()
+        x <<- y
     }
     get <- function() x
     setinv <- function(inv) i <<- inv
@@ -18,7 +19,6 @@ makeCacheMatrix <- function(x = matrix()) {
     list(set = set, get = get,
          setinv = setinv,
          getinv = getinv)
-    
 }
 
 ##  cacheSolve
@@ -42,5 +42,4 @@ cacheSolve <- function(x, ...) {
     data <- x$get()
     i <- solve(data, ...)
     x$setinv(i)
-    i
 }
